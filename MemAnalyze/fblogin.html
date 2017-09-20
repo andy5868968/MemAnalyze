@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head id="Head1" runat="server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <form runat="server">
+
+        <div id="fb-root"></div>  <!-- 一定要加 -->
+
+        <asp:HiddenField ID="BackURL" runat="server" />
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+        <script type="text/javascript" src="http://connect.facebook.net/zh_TW/all.js"></script>
+
+        <script type="text/javascript">
+
+            //初始化
+
+            FB.init({
+
+                appId: '451278721902921',  // 這邊填入剛剛申請的 app id
+
+                status: true,
+
+                cookie: true,
+
+                xfbml: true,
+
+                //在目錄下多放一隻檔案，檔名為channel.html
+
+
+                channelURL: '../channel.html',
+
+                oauth: true
+
+            });
+
+            //檢查登入狀態
+            alert("111");
+            FB.getLoginStatus(function (response) {
+
+                /* 如果有授權資料
+
+                    也可以用 response.status 來判斷
+
+                    response.status = 'connected'  已連接
+
+                    response.status = 'not_authorized'  未授權
+
+                    請參考 FB SDK  FB.getLoginStatus
+
+                    https://developers.facebook.com/docs/reference/javascript/FB.getLoginStatus/
+
+                */
+                alert(response);
+                if (response.authResponse) {
+
+                    //授權登入後就可以取到 accessToken，以後可以做一些事
+
+                    //可以做什麼事可以看這裡  http://developers.facebook.com/docs/reference/api/
+
+                    //https://developers.facebook.com/docs/reference/api/examples/
+
+                    //但這個例子用不到
+
+                    var accessToken = response.authResponse.accessToken;
+
+                    FB.api('/me?fields=name,email,birthday', function (response) {
+
+                        Loginplayer(response.id, response.name, response.email, response.birthday);
+
+                    });
+
+                } else {
+
+                    /*
+
+                        沒授權登入就做 FB.Login
+
+                        https://developers.facebook.com/docs/reference/javascript/FB.login/
+
+                        以此例而言是 scope: 'email,user_birthday' ，是想要取得 user email + 生日
+
+                        看你想要取得啥可以來這裡查
+
+                        https://developers.facebook.com/docs/reference/login/#permissions
+
+                Clipboard02
+
+                   預設只要登入就會有 Basic Information
+
+                   裡面包含了
+
+               Clipboard02
+
+                   */
+
+                    FB.login(function (response) {
+
+                        if (response.authResponse) {
+
+                            FB.api('/me?fields=name,email,birthday', function (response) {
+
+                                //所以 login 後可以直接取得下面的值，並傳入 CheckPlayer 這 function
+
+                                //然後在 CheckPlayer 中透過AJAX在資料庫中檢查並寫入資料庫
+
+                                Registerplayer(response.id, response.name, response.email, response.birthday);
+
+                            });
+
+                        } else {
+
+                            alert('登入失敗!');
+
+                        }
+
+                    }, {
+
+                            scope: 'email,user_birthday'
+
+                        });
+
+                }
+
+            });
+
+            function Registerplayer(uid, cname, email, birthday) {
+
+                $.ajax({
+
+                    url: 'api/Member/Register',
+
+                    type: 'POST',
+
+                    data: { facebook_id: uid, Name: cname, Account: email, Birthday: birthday },
+
+                    dateType: 'html',
+
+                    success: function (returndata) {
+                        console.log("回傳"+returndata);
+                        //檢查資料庫並新增完之後就看要幹嘛
+
+                    }
+
+                })
+
+            }
+            function Loginplayer(uid, cname, email, birthday) {
+
+                $.ajax({
+
+                    url: 'api/Member/Login',
+
+                    type: 'POST',
+
+                    data: { facebook_id: uid, Name: cname, Account: email, Birthday: birthday },
+
+                    dateType: 'html',
+
+                    success: function (returndata) {
+                        console.log("回傳" + returndata);
+                        //檢查資料庫並新增完之後就看要幹嘛
+
+                    }
+
+                })
+
+            }
+        </script>
+
+    </form>
+</body>
+</html>

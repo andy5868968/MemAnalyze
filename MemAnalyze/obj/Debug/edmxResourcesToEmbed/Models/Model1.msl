@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MemAnalyzeModelStoreContainer" CdmEntityContainer="MemAnalyzeEntities">
+    <EntitySetMapping Name="CdMember">
+      <EntityTypeMapping TypeName="MemAnalyzeModel.CdMember">
+        <MappingFragment StoreEntitySet="CdMember">
+          <ScalarProperty Name="isSurvey" ColumnName="isSurvey" />
+          <ScalarProperty Name="Imageurl" ColumnName="Imageurl" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="CdName" ColumnName="CdName" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member">
+      <EntityTypeMapping TypeName="MemAnalyzeModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Facebook_id" ColumnName="Facebook_id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Register_Survey">
+      <EntityTypeMapping TypeName="MemAnalyzeModel.Register_Survey">
+        <MappingFragment StoreEntitySet="Register_Survey">
+          <ScalarProperty Name="Eat_Milk" ColumnName="Eat_Milk" />
+          <ScalarProperty Name="Eat_Meat" ColumnName="Eat_Meat" />
+          <ScalarProperty Name="Eat_Cereal" ColumnName="Eat_Cereal" />
+          <ScalarProperty Name="Eat_Veg" ColumnName="Eat_Veg" />
+          <ScalarProperty Name="Eat_Fruit" ColumnName="Eat_Fruit" />
+          <ScalarProperty Name="Avg_Sleep" ColumnName="Avg_Sleep" />
+          <ScalarProperty Name="Problem" ColumnName="Problem" />
+          <ScalarProperty Name="CdName" ColumnName="CdName" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

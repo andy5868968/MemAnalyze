@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MemAnalyzeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MemAnalyzeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CdMember" EntityType="MemAnalyzeModel.CdMember" />
+    <EntitySet Name="Member" EntityType="MemAnalyzeModel.Member" />
+    <EntitySet Name="Register_Survey" EntityType="MemAnalyzeModel.Register_Survey" />
+  </EntityContainer>
+  <EntityType Name="CdMember">
+    <Key>
+      <PropertyRef Name="Account" />
+      <PropertyRef Name="CdName" />
+    </Key>
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CdName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="Imageurl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="isSurvey" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Register_Survey">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CdName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Problem" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Avg_Sleep" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Eat_Fruit" Type="Boolean" Nullable="false" />
+    <Property Name="Eat_Veg" Type="Boolean" Nullable="false" />
+    <Property Name="Eat_Cereal" Type="Boolean" Nullable="false" />
+    <Property Name="Eat_Meat" Type="Boolean" Nullable="false" />
+    <Property Name="Eat_Milk" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

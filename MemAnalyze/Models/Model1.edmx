@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MemAnalyzeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CdMember">
+          <Key>
+            <PropertyRef Name="Account" />
+            <PropertyRef Name="CdName" />
+          </Key>
+          <Property Name="Account" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CdName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="Imageurl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isSurvey" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="Account" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Facebook_id" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Register_Survey">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="Account" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CdName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Problem" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Avg_Sleep" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Eat_Fruit" Type="bit" Nullable="false" />
+          <Property Name="Eat_Veg" Type="bit" Nullable="false" />
+          <Property Name="Eat_Cereal" Type="bit" Nullable="false" />
+          <Property Name="Eat_Meat" Type="bit" Nullable="false" />
+          <Property Name="Eat_Milk" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MemAnalyzeModelStoreContainer">
+          <EntitySet Name="CdMember" EntityType="Self.CdMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Register_Survey" EntityType="Self.Register_Survey" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MemAnalyzeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MemAnalyzeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CdMember" EntityType="MemAnalyzeModel.CdMember" />
+          <EntitySet Name="Member" EntityType="MemAnalyzeModel.Member" />
+          <EntitySet Name="Register_Survey" EntityType="MemAnalyzeModel.Register_Survey" />
+        </EntityContainer>
+        <EntityType Name="CdMember">
+          <Key>
+            <PropertyRef Name="Account" />
+            <PropertyRef Name="CdName" />
+          </Key>
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CdName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Imageurl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isSurvey" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Register_Survey">
+          <Key>
+            <PropertyRef Name="Account" />
+          </Key>
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CdName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Problem" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Avg_Sleep" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Eat_Fruit" Type="Boolean" Nullable="false" />
+          <Property Name="Eat_Veg" Type="Boolean" Nullable="false" />
+          <Property Name="Eat_Cereal" Type="Boolean" Nullable="false" />
+          <Property Name="Eat_Meat" Type="Boolean" Nullable="false" />
+          <Property Name="Eat_Milk" Type="Boolean" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MemAnalyzeModelStoreContainer" CdmEntityContainer="MemAnalyzeEntities">
+          <EntitySetMapping Name="CdMember">
+            <EntityTypeMapping TypeName="MemAnalyzeModel.CdMember">
+              <MappingFragment StoreEntitySet="CdMember">
+                <ScalarProperty Name="isSurvey" ColumnName="isSurvey" />
+                <ScalarProperty Name="Imageurl" ColumnName="Imageurl" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="CdName" ColumnName="CdName" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="MemAnalyzeModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Facebook_id" ColumnName="Facebook_id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Register_Survey">
+            <EntityTypeMapping TypeName="MemAnalyzeModel.Register_Survey">
+              <MappingFragment StoreEntitySet="Register_Survey">
+                <ScalarProperty Name="Eat_Milk" ColumnName="Eat_Milk" />
+                <ScalarProperty Name="Eat_Meat" ColumnName="Eat_Meat" />
+                <ScalarProperty Name="Eat_Cereal" ColumnName="Eat_Cereal" />
+                <ScalarProperty Name="Eat_Veg" ColumnName="Eat_Veg" />
+                <ScalarProperty Name="Eat_Fruit" ColumnName="Eat_Fruit" />
+                <ScalarProperty Name="Avg_Sleep" ColumnName="Avg_Sleep" />
+                <ScalarProperty Name="Problem" ColumnName="Problem" />
+                <ScalarProperty Name="CdName" ColumnName="CdName" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
